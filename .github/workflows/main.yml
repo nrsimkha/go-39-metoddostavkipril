@@ -10,19 +10,19 @@ env:
 
 jobs:
   build:
-    runs-on: golang:1.15
+    runs-on: golang:latest
     steps:
       - run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o ./${PUBLIC_REGISTRY_APP_NAME} ./
 
   test:
-    runs-on: golang:1.15
+    runs-on: golang:latest
     needs: [build]
     steps:
       - run: echo "No tests!"
 
   lint:
     if: always()
-    runs-on: golang:1.15
+    runs-on: golang:latest
     needs: [build]
     steps:
       - run: curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.41.1
@@ -31,7 +31,7 @@ jobs:
   
   image:
     container: docker:latest
-    runs-on: golang:1.15
+    runs-on: golang:latest
     needs: [build,test,lint]
     if: github.ref == 'refs/heads/master'
     services:
