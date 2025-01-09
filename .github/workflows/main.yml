@@ -50,22 +50,21 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.15.x'
-      - run: echo "No build image commands!!!" 
-      
-    image_latest:
-    container: ubuntu:latest
-    runs-on: ubuntu-latest
-    environment: manual
-    needs: [build,test,lint]
-    services:
-      docker:
-        image: docker:dind
-    steps:
-      - uses: actions/checkout@v4
-      - uses: actions/setup-go@v5
-        with:
-          go-version: '1.15.x'
-      - run: echo "No build image commands!!!" 
+      - run: echo "No build image commands!!!"       
+  image_latest:
+      container: ubuntu:latest
+      runs-on: ubuntu-latest
+      environment: manual
+      needs: [build,test,lint]
+      services:
+        docker:
+          image: docker:dind
+      steps:
+        - uses: actions/checkout@v4
+        - uses: actions/setup-go@v5
+          with:
+            go-version: '1.15.x'
+        - run: echo "No build image commands!!!" 
 
 
 
