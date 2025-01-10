@@ -22,6 +22,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build]
     steps:
+      - uses: actions/checkout@v4
+      - run: echo ${{ github.workspace }}
+      - run: $GITHUB_WORKSPACE
       - run: go test -v $GITHUB_WORKSPACE
 
   lint:
