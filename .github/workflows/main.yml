@@ -83,7 +83,7 @@ jobs:
         with:
           context: .
           push: true
-          tags: user/app:latest     
+          tags: ${{env.PUBLIC_REGISTRY_HOST}}/${{env.PUBLIC_REGISTRY_OWNER}}/${{env.PUBLIC_REGISTRY_APP_NAME}}:latest
 
 
 
