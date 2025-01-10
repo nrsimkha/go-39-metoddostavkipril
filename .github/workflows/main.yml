@@ -52,7 +52,10 @@ jobs:
       - uses: actions/setup-go@v5
         with:
           go-version: '1.15.x'
-      - run: echo "No build image commands!!!"       
+      - run: docker login -u ${PUBLIC_REGISTRY_OWNER} -p ${PUBLIC_REGISTRY_PASSWORD} ${PUBLIC_REGISTRY_HOST}
+      - run: docker build -t ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest ./
+      - run: docker push ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME}:latest
+      - run: echo "New ${PUBLIC_REGISTRY_HOST}/${PUBLIC_REGISTRY_OWNER}/${PUBLIC_REGISTRY_APP_NAME} image ready! Version ${CI_COMMIT_REF_NAME}!"       
   image_latest:
       container: ubuntu:latest
       runs-on: ubuntu-latest
