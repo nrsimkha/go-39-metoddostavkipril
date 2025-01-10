@@ -24,8 +24,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: echo ${{ github.workspace }}
-      - run: $GITHUB_WORKSPACE
-      - run: go test -v $GITHUB_WORKSPACE
+      - run: go test -v ${{ github.workspace }}
 
   lint:
     if: always()
