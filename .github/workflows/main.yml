@@ -67,9 +67,11 @@ jobs:
       -
         name: Login to Docker Huba
         uses: docker/login-action@v3
+        env: # Or as an environment variable
+          dockerhub_token: ${{ secrets.DOCKERHUB_TOKEN }}
         with:
           username: $PUBLIC_REGISTRY_OWNER
-          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          password: $dockerhub_token
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
