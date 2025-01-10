@@ -69,7 +69,7 @@ jobs:
         uses: docker/login-action@v3
         with:
           username: $PUBLIC_REGISTRY_OWNER
-          password: ${{ secrets.PUBLIC_REGISTRY_PASSWORD }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -82,22 +82,8 @@ jobs:
         with:
           context: .
           push: true
-          tags: user/app:latest
-     
-  image_latest:
-      container: ubuntu:latest
-      runs-on: ubuntu-latest
-      environment: manual
-      needs: [build,test,lint]
-      services:
-        docker:
-          image: docker:dind
-      steps:
-        - uses: actions/checkout@v4
-        - uses: actions/setup-go@v5
-          with:
-            go-version: '1.15.x'
-        - run: echo "No build image commands!!!" 
+          tags: user/app:latest     
+
 
 
 
